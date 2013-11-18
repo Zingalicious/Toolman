@@ -1,4 +1,4 @@
 Toolman
 =======
 
-Zingalicious' custom tool plugin.
+Zingalicious' tool plugin.
