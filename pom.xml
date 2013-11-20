@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>us.zingalicio.toolman</groupId>
   <artifactId>Toolman</artifactId>
-  <version>0.5.0</version>
+  <version>0.5.5</version>
   <name>Toolman</name>
   <description>Zingalicious' tool plugin.</description>
   <url>http://github.com/Zingalicious/Toolman</url>
