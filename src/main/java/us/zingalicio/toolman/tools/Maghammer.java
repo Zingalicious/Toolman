@@ -54,9 +54,11 @@ public void onRangedUse(Player player, ItemStack item, Action action)
         moveBlock(Boolean.valueOf(false), Boolean.valueOf(true), item, player, newBlock, targetBlock);
         return;
       }
-
+      else
+      {
       player.sendMessage(ChatColor.GOLD + "[Toolman] Block out of range.");
       return;
+      }
     }
   }
 
@@ -85,11 +87,11 @@ public void onRangedUse(Player player, ItemStack item, Action action)
     {
       if (player.isSneaking())
       {
-        moveBlock(Boolean.valueOf(true), Boolean.valueOf(false), item, player, newBlock, clickedBlock);
+        moveBlock(true, false, item, player, newBlock, clickedBlock);
         return;
       }
 
-      moveBlock(Boolean.valueOf(false), Boolean.valueOf(true), item, player, newBlock, clickedBlock);
+      moveBlock(false, true, item, player, newBlock, clickedBlock);
       return;
     }
   }
@@ -109,6 +111,7 @@ private void moveBlock(Boolean overwrite, Boolean physics, ItemStack item, Playe
 
       BlockPlaceEvent placeEvent = new BlockPlaceEvent(destination, state, clicked, item, player, true);
       Bukkit.getPluginManager().callEvent(placeEvent);
+      return;
     }
     if (overwrite.booleanValue())
     {
@@ -124,6 +127,7 @@ private void moveBlock(Boolean overwrite, Boolean physics, ItemStack item, Playe
 
       BlockPlaceEvent placeEvent = new BlockPlaceEvent(destination, state, clicked, item, player, true);
       Bukkit.getPluginManager().callEvent(placeEvent);
+      return;
     }
     else
     {
