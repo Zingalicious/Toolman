@@ -2,6 +2,7 @@ package us.zingalicio.toolman.tools;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -77,8 +78,8 @@ public void onRangedUse(Player player, ItemStack item, Action action)
 		{
 			if (player.isSneaking())
 			{
-				List<?> lore = item.getItemMeta().getLore();
-				String fullData = (String)lore.get(1);
+				List<String> lore = item.getItemMeta().getLore();
+				String fullData = lore.get(1);
 				String[] splitData = fullData.split(":");
 
 				List<String> rawData = new ArrayList<String>();
@@ -88,13 +89,13 @@ public void onRangedUse(Player player, ItemStack item, Action action)
 					rawData.add(s);
 				}
 
-				Material mat = Material.valueOf((String)rawData.get(0));
-				byte data = Byte.parseByte((String)rawData.get(1));
+				Material mat = Material.valueOf(rawData.get(0));
+				byte data = Byte.parseByte(rawData.get(1));
 
 				Material oldMat = targetBlock.getType();
 				Byte oldData = Byte.valueOf(targetBlock.getData());
 
-				if ((mat != oldMat) || (data != oldData.byteValue()))
+				if ((mat != oldMat) || (data != oldData))
 				{
 					changeBlock(Boolean.valueOf(false), targetBlock, mat, data, player, item, plugin);
 				}
@@ -112,11 +113,11 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
 			String fullName = NameUtil.getFullName(plugin, block.getType(), block.getState().getData());
 
 			newLore.add(fullName);
-			newLore.add(block.getTypeId() + ":" + block.getData());
+			newLore.add(block.getType().name() + ":" + block.getData());
 
 			if (item.getItemMeta().hasLore())
 			{
-				List<?> lore = item.getItemMeta().getLore();
+				List<String> lore = item.getItemMeta().getLore();
 
 				if (lore.equals(newLore))
 				{
@@ -144,28 +145,32 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
 		}
 		else if (item.getItemMeta().hasLore())
 		{
-			if (player.isSneaking())
+			List<String> lore = item.getItemMeta().getLore();
+			String fullData = lore.get(1);
+			String[] splitData = fullData.split(":");
+
+			List<String> rawData = new ArrayList<String>();
+
+			for (String s : splitData)
 			{
-				List<?> lore = item.getItemMeta().getLore();
-				String fullData = (String)lore.get(1);
-				String[] splitData = fullData.split(":");
+				rawData.add(s);
+			}
 
-				List<String> rawData = new ArrayList<String>();
+			Material mat = Material.valueOf(rawData.get(0));
+			byte data = Byte.parseByte(rawData.get(1));
 
-				for (String s : splitData)
+			Material oldMat = block.getType();
+			Byte oldData = Byte.valueOf(block.getData());
+
+			if ((mat != oldMat) || (data != oldData))
+			{
+				if (player.isSneaking())
 				{
-					rawData.add(s);
+					changeBlock(false, block, mat, data, player, item, plugin);
 				}
-
-				Material mat = Material.valueOf((String)rawData.get(0));
-				byte data = Byte.parseByte((String)rawData.get(1));
-
-				Material oldMat = block.getType();
-				Byte oldData = Byte.valueOf(block.getData());
-
-				if ((mat != oldMat) || (data != oldData.byteValue()))
+				else
 				{
-					changeBlock(Boolean.valueOf(false), block, mat, data, player, item, plugin);
+					changeBlock(true, block, mat, data, player, item, plugin);
 				}
 			}
 		}
