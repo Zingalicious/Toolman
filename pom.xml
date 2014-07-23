@@ -15,6 +15,10 @@
             <id>bukkit-repo</id>
             <url>http://repo.bukkit.org/content/groups/public</url>
         </repository>
+        <repository>
+        	<id>zingalicious-repo</id>
+        	<url>http://zingalicio.us/repo</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -22,7 +26,13 @@
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
             <version>1.6.4-R2.0</version>
-            <type>jar</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+        	<groupId>us.zingalicio</groupId>
+        	<artifactId>Handlefish</artifactId>
+        	<version>0.1.0</version>
+        	<scope>provided</scope>
         </dependency>
     </dependencies>
 

@@ -6,10 +6,13 @@ import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import us.zingalicio.handlefish.util.NameUtil;
 import us.zingalicio.toolman.AbstractTool;
 import us.zingalicio.toolman.Toolman;
 import us.zingalicio.toolman.util.SoundUtil;
@@ -18,12 +21,14 @@ public class Paintbrush extends AbstractTool
 {
   Toolman plugin;
   SoundUtil soundUtil;
+  YamlConfiguration materials;
 
   public Paintbrush(Toolman plugin)
   {
     this.plugin = plugin;
     this.toolName = "Paintbrush";
     this.soundUtil = plugin.soundUtil;
+    this.materials = plugin.materials;
   }
 
   @SuppressWarnings("deprecation")
@@ -35,7 +40,7 @@ public void onRangedUse(Player player, ItemStack item, Action action)
     {
       List<String> newLore = new ArrayList<String>();
 
-      String fullName = getName(targetBlock);
+      String fullName = NameUtil.getName(plugin, targetBlock.getType()) + NameUtil.getMaterialName(plugin, targetBlock.getState().getData());
 
       newLore.add(fullName);
       newLore.add(targetBlock.getTypeId() + ":" + targetBlock.getData());
@@ -104,7 +109,7 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
     {
       List<String> newLore = new ArrayList<String>();
 
-      String fullName = getName(block);
+      String fullName = NameUtil.getName(plugin, block.getType()) + NameUtil.getMaterialName(plugin, block.getState().getData());
 
       newLore.add(fullName);
       newLore.add(block.getTypeId() + ":" + block.getData());
@@ -158,36 +163,5 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
         changeBlock(Boolean.valueOf(false), block, id, data, player, item, this.soundUtil);
       }
     }
-  }
-
-  @SuppressWarnings("deprecation")
-private String getName(Block block)
-  {
-    if (this.plugin.getConfig().contains("names." + block.getTypeId() + "." + block.getData()))
-    {
-      String name = this.plugin.getConfig().getString("names." + block.getTypeId() + "." + block.getData());
-      return name;
-    }
-
-    String[] fullNameSplit = block.getState().getData().toString().split("[(]");
-    List<String> fullNameList = new ArrayList<String>();
-
-    for (String s : fullNameSplit)
-    {
-      fullNameList.add(s);
-    }
-
-    String fullName = (String)fullNameList.get(0);
-    String[] splitName = fullName.split("_| ");
-
-    String name = "";
-
-    for (String s : splitName)
-    {
-      name = name + s.replace(s.substring(1), s.substring(1).toLowerCase());
-      name = name + " ";
-    }
-    name.trim();
-    return name;
   }
 }
