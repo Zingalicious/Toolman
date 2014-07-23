@@ -17,17 +17,23 @@ import us.zingalicio.toolman.tools.Paintbrush;
 import us.zingalicio.toolman.tools.Pliers;
 import us.zingalicio.toolman.tools.Replicator;
 import us.zingalicio.toolman.tools.Wrench;
-import us.zingalicio.toolman.util.SoundUtil;
 
 public final class Toolman extends ZingPlugin
 {
 	private ToolmanListener listener;
 	private ToolManager toolManager;
-	public File materialFile;
-	public YamlConfiguration materials;
-	public SoundUtil soundUtil;
+	private File materialFile;
+	private File configFile;
+	private final YamlConfiguration config;
+	private final YamlConfiguration materials;
 	private Map<Player, Boolean> delayMap = new HashMap<Player, Boolean>();
 
+	public Toolman()
+	{
+		materials = new YamlConfiguration();
+		config = new YamlConfiguration();
+	}
+	
 	public ToolManager getToolManager()
 	{
 		return this.toolManager;
@@ -41,12 +47,12 @@ public final class Toolman extends ZingPlugin
 	public void onEnable()
 	{		
 		materialFile = new File("plugins/common", "materials.yml");
-		materials = new YamlConfiguration();
+		configFile = new File(getDataFolder(), "config.yml");
 		ConfigHandler.loadYaml(materials, materialFile);
+		ConfigHandler.loadYaml(config, configFile);
 	
 		this.listener = new ToolmanListener(this);
 		this.toolManager = new ToolManager(this);
-		this.soundUtil = new SoundUtil(this);
 		registerTools();
 		
 		Bukkit.getPluginManager().registerEvents(this.listener, this);

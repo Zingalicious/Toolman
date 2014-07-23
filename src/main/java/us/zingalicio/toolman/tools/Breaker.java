@@ -20,7 +20,6 @@ public class Breaker extends AbstractTool
   {
     this.plugin = plugin;
     this.toolName = "Breaker";
-    this.soundUtil = plugin.soundUtil;
   }
 
   @SuppressWarnings("deprecation")
@@ -34,11 +33,11 @@ public void onRangedUse(Player player, ItemStack item, Action action)
       {
         if ((action == Action.LEFT_CLICK_AIR) || (action == Action.LEFT_CLICK_BLOCK))
         {
-          breakBlock(Boolean.valueOf(true), targetBlock, player, this.soundUtil);
+          breakBlock(Boolean.valueOf(true), targetBlock, player, plugin);
           return;
         }
 
-        breakBlock(Boolean.valueOf(false), targetBlock, player, this.soundUtil);
+        breakBlock(Boolean.valueOf(false), targetBlock, player, plugin);
         return;
       }
 
@@ -51,10 +50,10 @@ public void onRangedUse(Player player, ItemStack item, Action action)
   {
     if ((action == Action.LEFT_CLICK_AIR) || (action == Action.LEFT_CLICK_BLOCK))
     {
-      breakBlock(Boolean.valueOf(true), clickedBlock, player, this.soundUtil);
+      breakBlock(Boolean.valueOf(true), clickedBlock, player, plugin);
       return;
     }
 
-    breakBlock(Boolean.valueOf(false), clickedBlock, player, this.soundUtil);
+    breakBlock(Boolean.valueOf(false), clickedBlock, player, plugin);
   }
 }

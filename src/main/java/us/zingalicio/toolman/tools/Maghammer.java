@@ -25,7 +25,6 @@ public class Maghammer extends AbstractTool
   {
     this.plugin = plugin;
     this.toolName = "Maghammer";
-    this.soundUtil = plugin.soundUtil;
   }
 
   @SuppressWarnings("deprecation")
@@ -104,7 +103,7 @@ private void moveBlock(Boolean overwrite, Boolean physics, ItemStack item, Playe
     BlockState state = clicked.getState();
     if (destination.getType() == Material.AIR)
     {
-      breakBlock(physics, clicked, player, this.soundUtil);
+      breakBlock(physics, clicked, player, plugin);
 
       destination.setTypeId(id, physics.booleanValue());
       destination.setData(data, physics.booleanValue());
@@ -115,12 +114,12 @@ private void moveBlock(Boolean overwrite, Boolean physics, ItemStack item, Playe
     }
     if (overwrite.booleanValue())
     {
-      breakBlock(physics, clicked, player, this.soundUtil);
+      breakBlock(physics, clicked, player, plugin);
 
       BlockBreakEvent breakEvent2 = new BlockBreakEvent(destination, player);
       Bukkit.getPluginManager().callEvent(breakEvent2);
 
-      destination.getWorld().playSound(destination.getLocation(), this.soundUtil.getSound(destination.getType()), 1.0F, 1.0F);
+      destination.getWorld().playSound(destination.getLocation(), SoundUtil.getSound(destination.getType(), plugin), 1.0F, 1.0F);
 
       destination.setTypeId(id, physics.booleanValue());
       destination.setData(data, physics.booleanValue());

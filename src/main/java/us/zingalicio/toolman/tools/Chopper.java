@@ -24,7 +24,6 @@ public class Chopper extends AbstractTool
   {
     this.plugin = plugin;
     this.toolName = "Chopper";
-    this.soundUtil = plugin.soundUtil;
     this.mask.add(Material.LEAVES);
     this.mask.add(Material.LOG);
     this.mask.add(Material.CACTUS);
@@ -49,7 +48,7 @@ public void onRangedUse(Player player, ItemStack item, Action action)
           {
             if (this.mask.contains(b.getType()))
             {
-              breakBlock(Boolean.valueOf(true), b, player, this.soundUtil);
+              breakBlock(Boolean.valueOf(true), b, player, plugin);
             }
           }
         }
@@ -60,7 +59,7 @@ public void onRangedUse(Player player, ItemStack item, Action action)
           {
             if (this.mask.contains(b.getType()))
             {
-              breakBlock(Boolean.valueOf(true), b, player, this.soundUtil);
+              breakBlock(Boolean.valueOf(true), b, player, plugin);
             }
           }
         }
@@ -84,7 +83,7 @@ public void onRangedUse(Player player, ItemStack item, Action action)
         {
           if (this.mask.contains(b.getType()))
           {
-            breakBlock(Boolean.valueOf(true), b, player, this.soundUtil);
+            breakBlock(Boolean.valueOf(true), b, player, plugin);
           }
         }
       }
@@ -95,7 +94,7 @@ public void onRangedUse(Player player, ItemStack item, Action action)
         {
           if (this.mask.contains(b.getType()))
           {
-            breakBlock(Boolean.valueOf(true), b, player, this.soundUtil);
+            breakBlock(Boolean.valueOf(true), b, player, plugin);
           }
         }
       }
@@ -112,7 +111,7 @@ public void onRangedUse(Player player, ItemStack item, Action action)
         {
           if (this.mask.contains(b.getType()))
           {
-            breakBlock(Boolean.valueOf(true), b, player, this.soundUtil);
+            breakBlock(Boolean.valueOf(true), b, player, plugin);
           }
         }
       }
@@ -123,7 +122,7 @@ public void onRangedUse(Player player, ItemStack item, Action action)
         {
           if (this.mask.contains(b.getType()))
           {
-            breakBlock(Boolean.valueOf(true), b, player, this.soundUtil);
+            breakBlock(Boolean.valueOf(true), b, player, plugin);
           }
         }
       }

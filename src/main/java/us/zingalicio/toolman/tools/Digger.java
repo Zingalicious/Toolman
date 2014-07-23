@@ -24,7 +24,6 @@ public class Digger extends AbstractTool
   {
     this.plugin = plugin;
     this.toolName = "Digger";
-    this.soundUtil = plugin.soundUtil;
     this.mask.add(Material.STONE);
     this.mask.add(Material.DIRT);
     this.mask.add(Material.GRASS);
@@ -67,7 +66,7 @@ public void onRangedUse(Player player, ItemStack item, Action action)
           {
             if (this.mask.contains(b.getType()))
             {
-              breakBlock(Boolean.valueOf(true), b, player, this.soundUtil);
+              breakBlock(Boolean.valueOf(true), b, player, plugin);
             }
           }
         }
@@ -78,7 +77,7 @@ public void onRangedUse(Player player, ItemStack item, Action action)
           {
             if (this.mask.contains(b.getType()))
             {
-              breakBlock(Boolean.valueOf(true), b, player, this.soundUtil);
+              breakBlock(Boolean.valueOf(true), b, player, plugin);
             }
           }
         }
@@ -102,7 +101,7 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
         {
           if (this.mask.contains(b.getType()))
           {
-            breakBlock(Boolean.valueOf(true), b, player, this.soundUtil);
+            breakBlock(Boolean.valueOf(true), b, player, plugin);
           }
         }
       }
@@ -113,7 +112,7 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
         {
           if (this.mask.contains(b.getType()))
           {
-            breakBlock(Boolean.valueOf(true), b, player, this.soundUtil);
+            breakBlock(Boolean.valueOf(true), b, player, plugin);
           }
         }
       }
@@ -130,7 +129,7 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
         {
           if (this.mask.contains(b.getType()))
           {
-            breakBlock(Boolean.valueOf(true), b, player, this.soundUtil);
+            breakBlock(Boolean.valueOf(true), b, player, plugin);
           }
         }
       }
@@ -141,7 +140,7 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
         {
           if (this.mask.contains(b.getType()))
           {
-            breakBlock(Boolean.valueOf(true), b, player, this.soundUtil);
+            breakBlock(Boolean.valueOf(true), b, player, plugin);
           }
         }
       }

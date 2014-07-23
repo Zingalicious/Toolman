@@ -27,8 +27,7 @@ public class Paintbrush extends AbstractTool
   {
     this.plugin = plugin;
     this.toolName = "Paintbrush";
-    this.soundUtil = plugin.soundUtil;
-    this.materials = plugin.materials;
+    this.materials = plugin.getMaterials();
   }
 
   @SuppressWarnings("deprecation")
@@ -96,7 +95,7 @@ public void onRangedUse(Player player, ItemStack item, Action action)
 
         if ((id != oldMat) || (data != oldData.byteValue()))
         {
-          changeBlock(Boolean.valueOf(false), targetBlock, id, data, player, item, this.soundUtil);
+          changeBlock(Boolean.valueOf(false), targetBlock, id, data, player, item, plugin);
         }
       }
     }
@@ -160,7 +159,7 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
 
       if ((block.getTypeId() != id) || (block.getData() != data))
       {
-        changeBlock(Boolean.valueOf(false), block, id, data, player, item, this.soundUtil);
+        changeBlock(Boolean.valueOf(false), block, id, data, player, item, plugin);
       }
     }
   }

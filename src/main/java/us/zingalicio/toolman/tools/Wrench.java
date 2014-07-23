@@ -1,225 +1,216 @@
 package us.zingalicio.toolman.tools;
 
-import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.inventory.ItemStack;
 import us.zingalicio.toolman.AbstractTool;
 import us.zingalicio.toolman.Toolman;
-import us.zingalicio.toolman.util.SoundUtil;
 
 public class Wrench extends AbstractTool
 {
-  Toolman plugin;
-  SoundUtil soundUtil;
+	Toolman plugin;
 
-  public Wrench(Toolman plugin)
-  {
-    this.plugin = plugin;
-    this.toolName = "Wrench";
-    this.soundUtil = plugin.soundUtil;
-  }
+	public Wrench(Toolman plugin)
+	{
+		this.plugin = plugin;
+		this.toolName = "Wrench";
+	}
 
-  @SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation")
 public void onRangedUse(Player player, ItemStack item, Action action)
-  {
-    if (player.isSneaking())
-    {
-      Block targetBlock = player.getTargetBlock(null, this.plugin.getToolManager().getRange());
-      if (targetBlock.getType() != Material.AIR)
-      {
-        FileConfiguration config = this.plugin.getConfig();
+	{
+		if (player.isSneaking())
+		{
+			Block targetBlock = player.getTargetBlock(null, this.plugin.getToolManager().getRange());
+			if (targetBlock.getType() != Material.AIR)
+			{
+				YamlConfiguration materials = this.plugin.getMaterials();
+				List<Byte> valueList;
 
-        if (config.contains("values." + targetBlock.getTypeId()))
-        {
-          String values = config.getString("values." + targetBlock.getTypeId());
+				if ((valueList = materials.getByteList("blocks." + targetBlock.getType().name() + ".scroll")) != null)
+				{
+					int valueLength = valueList.size();
+						
+					if(valueLength == 0)
+					{
+						return;
+					}
+						
+					byte targetData = targetBlock.getData();
 
-          String[] stringValueList = values.split(",");
-          ArrayList<Byte> valueList = new ArrayList<Byte>();
+					if ((action == Action.RIGHT_CLICK_AIR) || (action == Action.RIGHT_CLICK_BLOCK))
+					{
+						if (valueList.contains(Byte.valueOf(targetData)))
+						{
+							if (targetData != ((Byte)valueList.get(0)).byteValue())
+							{
+								int currentValue = 0;
+								for (Iterator<Byte> i = valueList.iterator(); i.hasNext(); ) 
+								{ 
+									byte b = i.next().byteValue();
 
-          byte targetData = targetBlock.getData();
+									if (b == targetData)
+									{
+										changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getTypeId(), ((Byte)valueList.get(currentValue - 1)).byteValue(), player, item, plugin);
+										return;
+									}
+									currentValue++;
+								}
+							}
+							else
+							{
+								changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getTypeId(), ((Byte)valueList.get(valueLength - 1)).byteValue(), player, item, plugin);
+							}
 
-          for (String s : stringValueList)
-          {
-            valueList.add(Byte.valueOf(Byte.parseByte(s)));
-          }
+						}
+						else
+						{
+							changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getTypeId(), ((Byte)valueList.get(0)).byteValue(), player, item, plugin);
+						}
 
-          int valueLength = valueList.size();
+					}
+					else if (valueList.contains(Byte.valueOf(targetData)))
+					{
+						if (targetData != ((Byte)valueList.get(valueLength - 1)).byteValue())
+						{
+							int currentValue = 0;
+							for (Iterator<Byte> i = valueList.iterator(); i.hasNext(); ) { byte b = i.next().byteValue();
 
-          if ((action == Action.RIGHT_CLICK_AIR) || (action == Action.RIGHT_CLICK_BLOCK))
-          {
-            if (valueList.contains(Byte.valueOf(targetData)))
-            {
-              if (targetData != ((Byte)valueList.get(0)).byteValue())
-              {
-                int currentValue = 0;
-                for (Iterator<Byte> i = valueList.iterator(); i.hasNext(); ) 
-                { 
-                  byte b = i.next().byteValue();
+								if (b == targetData)
+								{
+									changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getTypeId(), ((Byte)valueList.get(currentValue + 1)).byteValue(), player, item, plugin);
+									return;
+								}
+								currentValue++;
+							}
+						}
+						else
+						{
+							changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getTypeId(), ((Byte)valueList.get(0)).byteValue(), player, item, plugin);
+						}
 
-                  if (b == targetData)
-                  {
-                    changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getTypeId(), ((Byte)valueList.get(currentValue - 1)).byteValue(), player, item, this.soundUtil);
-                    return;
-                  }
-                  currentValue++;
-                }
-              }
-              else
-              {
-                changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getTypeId(), ((Byte)valueList.get(valueLength - 1)).byteValue(), player, item, this.soundUtil);
-              }
+					}
+					else
+					{
+						changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getTypeId(), ((Byte)valueList.get(0)).byteValue(), player, item, plugin);
+						return;
+					}
+				}
 
-            }
-            else
-            {
-              changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getTypeId(), ((Byte)valueList.get(0)).byteValue(), player, item, this.soundUtil);
-            }
+				return;
+			}
+			player.sendMessage(ChatColor.GOLD + "[Toolman] Block out of range.");
+			return;
+		}
+	}
 
-          }
-          else if (valueList.contains(Byte.valueOf(targetData)))
-          {
-            if (targetData != ((Byte)valueList.get(valueLength - 1)).byteValue())
-            {
-              int currentValue = 0;
-              for (Iterator<Byte> i = valueList.iterator(); i.hasNext(); ) { byte b = i.next().byteValue();
-
-                if (b == targetData)
-                {
-                  changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getTypeId(), ((Byte)valueList.get(currentValue + 1)).byteValue(), player, item, this.soundUtil);
-                  return;
-                }
-                currentValue++;
-              }
-            }
-            else
-            {
-              changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getTypeId(), ((Byte)valueList.get(0)).byteValue(), player, item, this.soundUtil);
-            }
-
-          }
-          else
-          {
-            changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getTypeId(), ((Byte)valueList.get(0)).byteValue(), player, item, this.soundUtil);
-            return;
-          }
-        }
-
-        return;
-      }
-      player.sendMessage(ChatColor.GOLD + "[Toolman] Block out of range.");
-      return;
-    }
-  }
-
-  @SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation")
 public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStack item, Action action)
-  {
-    byte targetData = block.getData();
+	{
+		byte targetData = block.getData();
 
-    FileConfiguration config = this.plugin.getConfig();
+		YamlConfiguration materials = this.plugin.getMaterials();
 
-    if (player.isSneaking())
-    {
-      if ((action == Action.RIGHT_CLICK_BLOCK) || (action == Action.RIGHT_CLICK_AIR))
-      {
-        if (block.getData() != 0)
-        {
-          changeBlock(Boolean.valueOf(false), block, block.getTypeId(), (byte)(targetData - 1), player, item, this.soundUtil);
-          return;
-        }
+		if (player.isSneaking())
+		{
+			if ((action == Action.RIGHT_CLICK_BLOCK) || (action == Action.RIGHT_CLICK_AIR))
+			{
+				if (block.getData() != 0)
+				{
+					changeBlock(Boolean.valueOf(false), block, block.getTypeId(), (byte)(targetData - 1), player, item, plugin);
+					return;
+				}
 
-        changeBlock(Boolean.valueOf(false), block, block.getTypeId(), (byte)15, player, item, this.soundUtil);
-        return;
-      }
+				changeBlock(Boolean.valueOf(false), block, block.getTypeId(), (byte)15, player, item, plugin);
+				return;
+			}
 
-      if (block.getData() != 15)
-      {
-        changeBlock(Boolean.valueOf(false), block, block.getTypeId(), (byte)(targetData + 1), player, item, this.soundUtil);
-        return;
-      }
+			if (block.getData() != 15)
+			{
+				changeBlock(Boolean.valueOf(false), block, block.getTypeId(), (byte)(targetData + 1), player, item, plugin);
+				return;
+			}
 
-      changeBlock(Boolean.valueOf(false), block, block.getTypeId(), (byte)0, player, item, this.soundUtil);
-      return;
-    }
+			changeBlock(Boolean.valueOf(false), block, block.getTypeId(), (byte)0, player, item, plugin);
+			return;
+		}
+		
+		List<Byte> valueList;
 
-    if (config.contains("values." + block.getTypeId()))
-    {
-      String values = config.getString("values." + block.getTypeId());
+		if ((valueList = materials.getByteList("blocks." + block.getType().name() + ".scroll")) != null)
+		{
+			int valueLength = valueList.size();
 
-      String[] stringValueList = values.split(",");
-      ArrayList<Byte> valueList = new ArrayList<>();
+			if(valueLength == 0)
+			{
+				return;
+			}
 
-      for (String s : stringValueList)
-      {
-        valueList.add(Byte.valueOf(Byte.parseByte(s)));
-      }
+			if ((action == Action.RIGHT_CLICK_AIR) || (action == Action.RIGHT_CLICK_BLOCK))
+			{
+				if (valueList.contains(Byte.valueOf(targetData)))
+				{
+					if (targetData != ((Byte)valueList.get(0)).byteValue())
+					{
+						int currentValue = 0;
+						for (Iterator<Byte> i = valueList.iterator(); i.hasNext(); ) 
+						{ 
+							byte b = i.next().byteValue();
 
-      int valueLength = valueList.size();
+							if (b == targetData)
+							{
+								changeBlock(Boolean.valueOf(false), block, block.getTypeId(), ((Byte)valueList.get(currentValue - 1)).byteValue(), player, item, plugin);
+								return;
+							}
+							currentValue++;
+						}
+					}
+					else
+					{
+						changeBlock(Boolean.valueOf(false), block, block.getTypeId(), (byte)(valueLength - 1), player, item, plugin);
+					}
 
-      if ((action == Action.RIGHT_CLICK_AIR) || (action == Action.RIGHT_CLICK_BLOCK))
-      {
-        if (valueList.contains(Byte.valueOf(targetData)))
-        {
-          if (targetData != ((Byte)valueList.get(0)).byteValue())
-          {
-            int currentValue = 0;
-            for (Iterator<Byte> i = valueList.iterator(); i.hasNext(); ) 
-            { 
-              byte b = i.next().byteValue();
+				}
+				else
+				{
+					changeBlock(Boolean.valueOf(false), block, block.getTypeId(), ((Byte)valueList.get(0)).byteValue(), player, item, plugin);
+				}
 
-              if (b == targetData)
-              {
-                changeBlock(Boolean.valueOf(false), block, block.getTypeId(), ((Byte)valueList.get(currentValue - 1)).byteValue(), player, item, this.soundUtil);
-                return;
-              }
-              currentValue++;
-            }
-          }
-          else
-          {
-            changeBlock(Boolean.valueOf(false), block, block.getTypeId(), (byte)(valueLength - 1), player, item, this.soundUtil);
-          }
+			}
+			else if (valueList.contains(Byte.valueOf(targetData)))
+			{
+				if (targetData != ((Byte)valueList.get(valueLength - 1)).byteValue())
+				{
+					int currentValue = 0;
+					for (Iterator<Byte> i = valueList.iterator(); i.hasNext(); ) { byte b = i.next().byteValue();
 
-        }
-        else
-        {
-          changeBlock(Boolean.valueOf(false), block, block.getTypeId(), ((Byte)valueList.get(0)).byteValue(), player, item, this.soundUtil);
-        }
+						if (b == targetData)
+						{
+							changeBlock(Boolean.valueOf(false), block, block.getTypeId(), ((Byte)valueList.get(currentValue + 1)).byteValue(), player, item, plugin);
+							return;
+						}
+						currentValue++;
+					}
+				}
+				else
+				{
+					changeBlock(Boolean.valueOf(false), block, block.getTypeId(), ((Byte)valueList.get(0)).byteValue(), player, item, plugin);
+				}
 
-      }
-      else if (valueList.contains(Byte.valueOf(targetData)))
-      {
-        if (targetData != ((Byte)valueList.get(valueLength - 1)).byteValue())
-        {
-          int currentValue = 0;
-          for (Iterator<Byte> i = valueList.iterator(); i.hasNext(); ) { byte b = i.next().byteValue();
-
-            if (b == targetData)
-            {
-              changeBlock(Boolean.valueOf(false), block, block.getTypeId(), ((Byte)valueList.get(currentValue + 1)).byteValue(), player, item, this.soundUtil);
-              return;
-            }
-            currentValue++;
-          }
-        }
-        else
-        {
-          changeBlock(Boolean.valueOf(false), block, block.getTypeId(), ((Byte)valueList.get(0)).byteValue(), player, item, this.soundUtil);
-        }
-
-      }
-      else
-      {
-        changeBlock(Boolean.valueOf(false), block, block.getTypeId(), ((Byte)valueList.get(0)).byteValue(), player, item, this.soundUtil);
-        return;
-      }
-    }
-  }
+			}
+			else
+			{
+				changeBlock(Boolean.valueOf(false), block, block.getTypeId(), ((Byte)valueList.get(0)).byteValue(), player, item, plugin);
+				return;
+			}
+		}
+	}
 }
