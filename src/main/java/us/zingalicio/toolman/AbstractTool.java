@@ -11,7 +11,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 
 import us.zingalicio.handlefish.ZingPlugin;
-import us.zingalicio.toolman.util.SoundUtil;
+import us.zingalicio.handlefish.util.SoundUtil;
 
 public abstract class AbstractTool
   implements Tool

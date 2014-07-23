@@ -15,9 +15,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import us.zingalicio.handlefish.util.NameUtil;
+import us.zingalicio.handlefish.util.SoundUtil;
 import us.zingalicio.toolman.AbstractTool;
 import us.zingalicio.toolman.Toolman;
-import us.zingalicio.toolman.util.SoundUtil;
 
 public class Paintbrush extends AbstractTool
 {
