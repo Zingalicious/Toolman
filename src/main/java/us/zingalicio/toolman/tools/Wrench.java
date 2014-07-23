@@ -50,16 +50,16 @@ public void onRangedUse(Player player, ItemStack item, Action action)
 					{
 						if (valueList.contains(Byte.valueOf(targetData)))
 						{
-							if (targetData != ((Byte)valueList.get(0)).byteValue())
+							if (targetData != valueList.get(0))
 							{
 								int currentValue = 0;
 								for (Iterator<Byte> i = valueList.iterator(); i.hasNext(); ) 
 								{ 
-									byte b = i.next().byteValue();
+									byte b = i.next();
 
 									if (b == targetData)
 									{
-										changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getTypeId(), ((Byte)valueList.get(currentValue - 1)).byteValue(), player, item, plugin);
+										changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getType(), valueList.get(currentValue - 1), player, item, plugin);
 										return;
 									}
 									currentValue++;
@@ -67,26 +67,28 @@ public void onRangedUse(Player player, ItemStack item, Action action)
 							}
 							else
 							{
-								changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getTypeId(), ((Byte)valueList.get(valueLength - 1)).byteValue(), player, item, plugin);
+								changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getType(), valueList.get(valueLength - 1), player, item, plugin);
 							}
 
 						}
 						else
 						{
-							changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getTypeId(), ((Byte)valueList.get(0)).byteValue(), player, item, plugin);
+							changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getType(), valueList.get(0), player, item, plugin);
 						}
 
 					}
 					else if (valueList.contains(Byte.valueOf(targetData)))
 					{
-						if (targetData != ((Byte)valueList.get(valueLength - 1)).byteValue())
+						if (targetData != valueList.get(valueLength - 1))
 						{
 							int currentValue = 0;
-							for (Iterator<Byte> i = valueList.iterator(); i.hasNext(); ) { byte b = i.next().byteValue();
+							for (Iterator<Byte> i = valueList.iterator(); i.hasNext(); ) 
+							{
+								byte b = i.next();
 
 								if (b == targetData)
 								{
-									changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getTypeId(), ((Byte)valueList.get(currentValue + 1)).byteValue(), player, item, plugin);
+									changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getType(), valueList.get(currentValue + 1), player, item, plugin);
 									return;
 								}
 								currentValue++;
@@ -94,13 +96,13 @@ public void onRangedUse(Player player, ItemStack item, Action action)
 						}
 						else
 						{
-							changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getTypeId(), ((Byte)valueList.get(0)).byteValue(), player, item, plugin);
+							changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getType(), valueList.get(0), player, item, plugin);
 						}
 
 					}
 					else
 					{
-						changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getTypeId(), ((Byte)valueList.get(0)).byteValue(), player, item, plugin);
+						changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getType(), valueList.get(0), player, item, plugin);
 						return;
 					}
 				}
@@ -125,21 +127,21 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
 			{
 				if (block.getData() != 0)
 				{
-					changeBlock(Boolean.valueOf(false), block, block.getTypeId(), (byte)(targetData - 1), player, item, plugin);
+					changeBlock(Boolean.valueOf(false), block, block.getType(), (byte)(targetData - 1), player, item, plugin);
 					return;
 				}
 
-				changeBlock(Boolean.valueOf(false), block, block.getTypeId(), (byte)15, player, item, plugin);
+				changeBlock(Boolean.valueOf(false), block, block.getType(), (byte)15, player, item, plugin);
 				return;
 			}
 
 			if (block.getData() != 15)
 			{
-				changeBlock(Boolean.valueOf(false), block, block.getTypeId(), (byte)(targetData + 1), player, item, plugin);
+				changeBlock(Boolean.valueOf(false), block, block.getType(), (byte)(targetData + 1), player, item, plugin);
 				return;
 			}
 
-			changeBlock(Boolean.valueOf(false), block, block.getTypeId(), (byte)0, player, item, plugin);
+			changeBlock(Boolean.valueOf(false), block, block.getType(), (byte)0, player, item, plugin);
 			return;
 		}
 		
@@ -158,16 +160,16 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
 			{
 				if (valueList.contains(Byte.valueOf(targetData)))
 				{
-					if (targetData != ((Byte)valueList.get(0)).byteValue())
+					if (targetData != valueList.get(0))
 					{
 						int currentValue = 0;
 						for (Iterator<Byte> i = valueList.iterator(); i.hasNext(); ) 
 						{ 
-							byte b = i.next().byteValue();
+							byte b = i.next();
 
 							if (b == targetData)
 							{
-								changeBlock(Boolean.valueOf(false), block, block.getTypeId(), ((Byte)valueList.get(currentValue - 1)).byteValue(), player, item, plugin);
+								changeBlock(Boolean.valueOf(false), block, block.getType(), valueList.get(currentValue - 1), player, item, plugin);
 								return;
 							}
 							currentValue++;
@@ -175,26 +177,28 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
 					}
 					else
 					{
-						changeBlock(Boolean.valueOf(false), block, block.getTypeId(), (byte)(valueLength - 1), player, item, plugin);
+						changeBlock(Boolean.valueOf(false), block, block.getType(), valueList.get(valueLength - 1), player, item, plugin);
 					}
 
 				}
 				else
 				{
-					changeBlock(Boolean.valueOf(false), block, block.getTypeId(), ((Byte)valueList.get(0)).byteValue(), player, item, plugin);
+					changeBlock(Boolean.valueOf(false), block, block.getType(), valueList.get(0), player, item, plugin);
 				}
 
 			}
 			else if (valueList.contains(Byte.valueOf(targetData)))
 			{
-				if (targetData != ((Byte)valueList.get(valueLength - 1)).byteValue())
+				if (targetData != valueList.get(valueLength - 1))
 				{
 					int currentValue = 0;
-					for (Iterator<Byte> i = valueList.iterator(); i.hasNext(); ) { byte b = i.next().byteValue();
+					for (Iterator<Byte> i = valueList.iterator(); i.hasNext(); ) 
+					{
+						byte b = i.next();
 
 						if (b == targetData)
 						{
-							changeBlock(Boolean.valueOf(false), block, block.getTypeId(), ((Byte)valueList.get(currentValue + 1)).byteValue(), player, item, plugin);
+							changeBlock(Boolean.valueOf(false), block, block.getType(), valueList.get(currentValue + 1), player, item, plugin);
 							return;
 						}
 						currentValue++;
@@ -202,13 +206,13 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
 				}
 				else
 				{
-					changeBlock(Boolean.valueOf(false), block, block.getTypeId(), ((Byte)valueList.get(0)).byteValue(), player, item, plugin);
+					changeBlock(Boolean.valueOf(false), block, block.getType(), valueList.get(0), player, item, plugin);
 				}
 
 			}
 			else
 			{
-				changeBlock(Boolean.valueOf(false), block, block.getTypeId(), ((Byte)valueList.get(0)).byteValue(), player, item, plugin);
+				changeBlock(Boolean.valueOf(false), block, block.getType(), valueList.get(0), player, item, plugin);
 				return;
 			}
 		}

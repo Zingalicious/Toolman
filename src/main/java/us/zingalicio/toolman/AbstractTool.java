@@ -1,6 +1,7 @@
 package us.zingalicio.toolman;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
@@ -61,13 +62,13 @@ public void updateBlockChange(Block changedBlock)
   }
 
   @SuppressWarnings("deprecation")
-  public void changeBlock(Boolean physics, Block block, int mat, byte data, Player player, ItemStack item, ZingPlugin plugin)
+  public void changeBlock(Boolean physics, Block block, Material mat, byte data, Player player, ItemStack item, ZingPlugin plugin)
   {
     BlockBreakEvent breakEvent = new BlockBreakEvent(block, player);
     Bukkit.getPluginManager().callEvent(breakEvent);
-    block.getWorld().playSound(block.getLocation(), SoundUtil.getSound(block.getType(), plugin), 0.5F, 1.0F);
+    block.getWorld().playSound(block.getLocation(), SoundUtil.getSound(block.getType(), plugin), 0.2F, 1.0F);
 
-    block.setTypeId(mat, physics.booleanValue());
+    block.setTypeId(mat.getId(), physics.booleanValue());
     block.setData(data, physics.booleanValue());
 
     block.getWorld().playSound(block.getLocation(), SoundUtil.getSound(block.getType(), plugin), 1.0F, 1.0F);
@@ -82,9 +83,9 @@ public void updateBlockChange(Block changedBlock)
   }
 
   @SuppressWarnings("deprecation")
-  public void placeBlock(Boolean physics, Block block, int mat, byte data, Player player, ItemStack item, ZingPlugin plugin)
+  public void placeBlock(Boolean physics, Block block, Material mat, byte data, Player player, ItemStack item, ZingPlugin plugin)
   {
-    block.setTypeId(mat, physics.booleanValue());
+    block.setTypeId(mat.getId(), physics.booleanValue());
     block.setData(data, physics.booleanValue());
 
     block.getWorld().playSound(block.getLocation(), SoundUtil.getSound(block.getType(), plugin), 1.0F, 1.0F);

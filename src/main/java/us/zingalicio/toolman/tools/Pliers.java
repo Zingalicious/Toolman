@@ -32,7 +32,6 @@ public void onRangedUse(Player player, ItemStack item, Action action)
     BlockFace blockFace = blockGetter.getBlockFace(targetBlock, player);
 
     Material mat = targetBlock.getType();
-    int matId = targetBlock.getTypeId();
     byte data = targetBlock.getData();
 
     if ((player.isSneaking()) && (blockFace != null))
@@ -46,7 +45,7 @@ public void onRangedUse(Player player, ItemStack item, Action action)
 
           if (newBlock.getType() == Material.AIR)
           {
-            placeBlock(Boolean.valueOf(true), newBlock, matId, data, player, item, plugin);
+            placeBlock(Boolean.valueOf(true), newBlock, mat, data, player, item, plugin);
           }
           return;
         }
@@ -55,7 +54,7 @@ public void onRangedUse(Player player, ItemStack item, Action action)
 
         if (newBlock.getType() == Material.AIR)
         {
-          placeBlock(Boolean.valueOf(true), newBlock, matId, data, player, item, plugin);
+          placeBlock(Boolean.valueOf(true), newBlock, mat, data, player, item, plugin);
         }
         return;
       }
@@ -72,7 +71,6 @@ public void onCloseUse(Block clickedBlock, BlockFace blockFace, Player player, I
     Block newBlockO = clickedBlock.getRelative(blockFace.getOppositeFace());
 
     Material mat = clickedBlock.getType();
-    int matId = clickedBlock.getTypeId();
     byte data = clickedBlock.getData();
 
     Material newMat = newBlock.getType();
@@ -86,15 +84,15 @@ public void onCloseUse(Block clickedBlock, BlockFace blockFace, Player player, I
         {
           if (newMatO != Material.AIR)
           {
-            changeBlock(Boolean.valueOf(true), newBlockO, matId, data, player, item, plugin);
+            changeBlock(Boolean.valueOf(true), newBlockO, mat, data, player, item, plugin);
             return;
           }
-          placeBlock(Boolean.valueOf(true), newBlockO, matId, data, player, item, plugin);
+          placeBlock(Boolean.valueOf(true), newBlockO, mat, data, player, item, plugin);
           return;
         }
         if (newMatO == Material.AIR)
         {
-          placeBlock(Boolean.valueOf(true), newBlockO, matId, data, player, item, plugin);
+          placeBlock(Boolean.valueOf(true), newBlockO, mat, data, player, item, plugin);
           return;
         }
 
@@ -108,15 +106,15 @@ public void onCloseUse(Block clickedBlock, BlockFace blockFace, Player player, I
       {
         if (newMat != Material.AIR)
         {
-          changeBlock(Boolean.valueOf(true), newBlock, matId, data, player, item, plugin);
+          changeBlock(Boolean.valueOf(true), newBlock, mat, data, player, item, plugin);
           return;
         }
-        placeBlock(Boolean.valueOf(true), newBlock, matId, data, player, item, plugin);
+        placeBlock(Boolean.valueOf(true), newBlock, mat, data, player, item, plugin);
         return;
       }
       if (newMat == Material.AIR)
       {
-        placeBlock(Boolean.valueOf(true), newBlock, matId, data, player, item, plugin);
+        placeBlock(Boolean.valueOf(true), newBlock, mat, data, player, item, plugin);
         return;
       }
 

@@ -43,6 +43,16 @@ public final class Toolman extends ZingPlugin
 	{
 		return this.listener;
 	}
+	
+	public YamlConfiguration getMaterials()
+	{
+		return this.materials;
+	}
+	
+	public YamlConfiguration getConfig()
+	{
+		return this.config;
+	}
 
 	public void onEnable()
 	{		
