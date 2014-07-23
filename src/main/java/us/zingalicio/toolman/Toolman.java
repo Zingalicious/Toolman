@@ -48,6 +48,7 @@ public final class Toolman extends ZingPlugin
 	{		
 		materialFile = new File("plugins/common", "materials.yml");
 		configFile = new File(getDataFolder(), "config.yml");
+		ConfigHandler.saveDefault(this, configFile);
 		ConfigHandler.loadYaml(materials, materialFile);
 		ConfigHandler.loadYaml(config, configFile);
 	
