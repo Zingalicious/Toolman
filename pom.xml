@@ -34,7 +34,8 @@
         <dependency>
         	<groupId>us.zingalicio</groupId>
         	<artifactId>ZingLib</artifactId>
-        	<version>0.0.1-SNAPSHOT</version>
+        	<version>0.1.0</version>
+        	<scope>provided</scope>
         </dependency>
     </dependencies>
 
