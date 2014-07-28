@@ -10,6 +10,13 @@
   	<name>Zingalicious</name>
   	<url>http://zingalicio.us</url>
   </organization>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
       <repositories>
         <repository>
             <id>bukkit-repo</id>
@@ -77,7 +84,6 @@
                             <minimizeJar>false</minimizeJar>
                             <artifactSet>
                                 <excludes>
-                                    <exclude>org.bukkit:craftbukkit</exclude>
                                     <exclude>org.bukkit:bukkit</exclude>
                                 </excludes>
                             </artifactSet>

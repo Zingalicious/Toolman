@@ -1,5 +1,5 @@
 name: Toolman
 main: us.zingalicio.toolman.Toolman
 version: ${project.version}
-depend: [Handlefish]
+depend: [ZingLib]
 author: zingten11

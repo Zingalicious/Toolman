@@ -1,6 +1,5 @@
 package us.zingalicio.toolman;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import org.bukkit.Bukkit;
@@ -16,22 +15,16 @@ import us.zingalicio.toolman.tools.Pliers;
 import us.zingalicio.toolman.tools.Replicator;
 import us.zingalicio.toolman.tools.Wrench;
 import us.zingalicio.zinglib.plugin.ZingPlugin;
-import us.zingalicio.zinglib.util.ConfigUtil;
 
 public final class Toolman extends ZingPlugin
 {
 	private ToolmanListener listener;
 	private ToolManager toolManager;
-	private File materialFile;
-	private File configFile;
-	private final YamlConfiguration config;
-	private final YamlConfiguration materials;
 	private Map<Player, Boolean> delayMap = new HashMap<Player, Boolean>();
 
 	public Toolman()
 	{
-		materials = new YamlConfiguration();
-		config = new YamlConfiguration();
+		super();
 	}
 	
 	public ToolManager getToolManager()
@@ -56,12 +49,6 @@ public final class Toolman extends ZingPlugin
 
 	public void onEnable()
 	{		
-		materialFile = new File("plugins/common", "materials.yml");
-		configFile = new File(getDataFolder(), "config.yml");
-		ConfigUtil.saveDefault(this, configFile);
-		ConfigUtil.loadYaml(materials, materialFile);
-		ConfigUtil.loadYaml(config, configFile);
-	
 		this.listener = new ToolmanListener(this);
 		this.toolManager = new ToolManager(this);
 		registerTools();

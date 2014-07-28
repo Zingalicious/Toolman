@@ -12,6 +12,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 
+import us.zingalicio.zinglib.util.MessageUtil;
 import us.zingalicio.zinglib.util.SoundUtil;
 import us.zingalicio.toolman.AbstractTool;
 import us.zingalicio.toolman.Toolman;
@@ -56,7 +57,7 @@ public void onRangedUse(Player player, ItemStack item, Action action)
       }
       else
       {
-      player.sendMessage(ChatColor.GOLD + "[Toolman] Block out of range.");
+      MessageUtil.sendMessage(plugin, player, "Block out of range.");
       return;
       }
     }
