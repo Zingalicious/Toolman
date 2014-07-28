@@ -10,6 +10,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import us.zingalicio.toolman.AbstractTool;
 import us.zingalicio.toolman.Toolman;
+import us.zingalicio.zinglib.util.MessageUtil;
+import us.zingalicio.zinglib.util.NameUtil;
 
 public class Replicator extends AbstractTool
 {
@@ -41,6 +43,7 @@ public void onRangedUse(Player player, ItemStack item, Action action)
           }
         }
       }
+      MessageUtil.sendMessage(plugin, player, "Refilled hotbar.");
       player.getWorld().playSound(player.getLocation(), Sound.LAVA_POP, 0.1F, 0.031F);
       player.updateInventory();
       return;
@@ -57,10 +60,12 @@ public void onRangedUse(Player player, ItemStack item, Action action)
 
       ItemStack newStack = new ItemStack(mat, maxStackSize, data);
 
-      inventory.addItem(new ItemStack[] { newStack });
+      ItemStack extra = inventory.addItem(newStack).get(0);
+      int amt = maxStackSize - extra.getAmount();
+      MessageUtil.sendMessage(plugin, player, "Given " + amt + " " + NameUtil.getFullName(plugin, newStack.getType(), newStack.getData()) + ".");
+      player.getWorld().playSound(player.getLocation(), Sound.LAVA_POP, 0.1F, 0.031F);
+      player.updateInventory();
     }
-    player.getWorld().playSound(player.getLocation(), Sound.LAVA_POP, 0.1F, 0.031F);
-    player.updateInventory();
   }
 
   @SuppressWarnings("deprecation")
@@ -83,6 +88,7 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
           }
         }
       }
+      MessageUtil.sendMessage(plugin, player, "Refilled hotbar.");
       player.getWorld().playSound(player.getLocation(), Sound.LAVA_POP, 0.1F, 0.031F);
       player.updateInventory();
       return;
@@ -95,7 +101,9 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
 
     ItemStack newStack = new ItemStack(mat, maxStackSize, data);
 
-    inventory.addItem(new ItemStack[] { newStack });
+    ItemStack extra = inventory.addItem(newStack).get(0);
+    int amt = maxStackSize - extra.getAmount();
+    MessageUtil.sendMessage(plugin, player, "Given " + amt + " " + NameUtil.getFullName(plugin, newStack.getType(), newStack.getData()) + ".");
 
     player.getWorld().playSound(player.getLocation(), Sound.LAVA_POP, 0.1F, 0.031F);
     player.updateInventory();
