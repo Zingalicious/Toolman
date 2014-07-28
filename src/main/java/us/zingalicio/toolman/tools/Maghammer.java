@@ -12,7 +12,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 
-import us.zingalicio.handlefish.util.SoundUtil;
+import us.zingalicio.zinglib.util.SoundUtil;
 import us.zingalicio.toolman.AbstractTool;
 import us.zingalicio.toolman.Toolman;
 import us.zingalicio.toolman.util.BlockGetter;

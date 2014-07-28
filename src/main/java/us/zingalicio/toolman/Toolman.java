@@ -7,8 +7,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
-import us.zingalicio.handlefish.ZingPlugin;
-import us.zingalicio.handlefish.configuration.ConfigHandler;
 import us.zingalicio.toolman.tools.Breaker;
 import us.zingalicio.toolman.tools.Chopper;
 import us.zingalicio.toolman.tools.Digger;
@@ -17,6 +15,8 @@ import us.zingalicio.toolman.tools.Paintbrush;
 import us.zingalicio.toolman.tools.Pliers;
 import us.zingalicio.toolman.tools.Replicator;
 import us.zingalicio.toolman.tools.Wrench;
+import us.zingalicio.zinglib.plugin.ZingPlugin;
+import us.zingalicio.zinglib.util.ConfigUtil;
 
 public final class Toolman extends ZingPlugin
 {
@@ -58,9 +58,9 @@ public final class Toolman extends ZingPlugin
 	{		
 		materialFile = new File("plugins/common", "materials.yml");
 		configFile = new File(getDataFolder(), "config.yml");
-		ConfigHandler.saveDefault(this, configFile);
-		ConfigHandler.loadYaml(materials, materialFile);
-		ConfigHandler.loadYaml(config, configFile);
+		ConfigUtil.saveDefault(this, configFile);
+		ConfigUtil.loadYaml(materials, materialFile);
+		ConfigUtil.loadYaml(config, configFile);
 	
 		this.listener = new ToolmanListener(this);
 		this.toolManager = new ToolManager(this);

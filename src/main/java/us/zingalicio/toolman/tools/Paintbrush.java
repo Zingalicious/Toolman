@@ -14,8 +14,8 @@ import org.bukkit.event.block.Action;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import us.zingalicio.handlefish.util.NameUtil;
-import us.zingalicio.handlefish.util.SoundUtil;
+import us.zingalicio.zinglib.util.NameUtil;
+import us.zingalicio.zinglib.util.SoundUtil;
 import us.zingalicio.toolman.AbstractTool;
 import us.zingalicio.toolman.Toolman;
 
