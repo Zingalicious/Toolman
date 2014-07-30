@@ -1,13 +1,17 @@
 package us.zingalicio.toolman.tools;
 
 import java.util.ArrayList;
+
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
+import us.zingalicio.zinglib.plugin.ZingPlugin;
 import us.zingalicio.zinglib.util.MessageUtil;
 import us.zingalicio.zinglib.util.SoundUtil;
 import us.zingalicio.toolman.AbstractTool;
@@ -129,4 +133,17 @@ public void onRangedUse(Player player, ItemStack item, Action action)
       }
     }
   }
+	@SuppressWarnings("deprecation")
+	@Override
+	public void breakBlock(Boolean physics, Block block, Player player, ZingPlugin plugin)
+	{
+	  BlockBreakEvent breakEvent = new BlockBreakEvent(block, player);
+	  Bukkit.getPluginManager().callEvent(breakEvent);
+	  block.getWorld().playSound(block.getLocation(), SoundUtil.getSound(block.getType(), plugin), 0.1F, 1.0F);
+	  block.setTypeId(0, physics.booleanValue());
+	  if (!physics.booleanValue())
+	  {
+	    updateBlockChange(block);
+	  }
+	}
 }
