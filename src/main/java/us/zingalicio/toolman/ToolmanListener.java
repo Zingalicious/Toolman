@@ -1,5 +1,6 @@
 package us.zingalicio.toolman;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,16 +17,13 @@ public class ToolmanListener
     this.plugin = plugin;
   }
 
-  @SuppressWarnings("deprecation")
   @EventHandler
   public void onPlayerInteract(PlayerInteractEvent event)
   {
     Player player = event.getPlayer();
 
-    byte i = 1;
-
     if ((event.hasItem()) && (event.getItem().hasItemMeta()) && 
-      (event.getItem().getType() == Material.EMERALD) && (event.getItem().getData().getData() == i))
+      (event.getItem().getType() == Material.EMERALD) && (event.getItem().getItemMeta().hasLore() && event.getItem().getItemMeta().getLore().get(0).equalsIgnoreCase(ChatColor.GOLD + "Bona fide!")))
     {
       if (event.getClickedBlock() == null)
       {

@@ -44,10 +44,11 @@ public void onRangedUse(Player player, ItemStack item, Action action)
 
 			String fullName = NameUtil.getFullName(plugin, targetBlock.getType(), targetBlock.getState().getData());
 
+			newLore.add(ChatColor.GOLD + "Bona fide!");
 			newLore.add(fullName);
 			newLore.add(targetBlock.getType().name() + ":" + targetBlock.getData());
 
-			if (item.getItemMeta().hasLore())
+			if (item.getItemMeta().getLore().size() == 3)
 			{
 				List<?> lore = item.getItemMeta().getLore();
 
@@ -75,12 +76,12 @@ public void onRangedUse(Player player, ItemStack item, Action action)
 			}
 
 		}
-		else if (item.getItemMeta().hasLore())
+		else if (item.getItemMeta().getLore().size() == 3)
 		{
 			if (player.isSneaking())
 			{
 				List<String> lore = item.getItemMeta().getLore();
-				String fullData = lore.get(1);
+				String fullData = lore.get(2);
 				String[] splitData = fullData.split(":");
 
 				List<String> rawData = new ArrayList<String>();
@@ -113,10 +114,11 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
 
 			String fullName = NameUtil.getFullName(plugin, block.getType(), block.getState().getData());
 
+			newLore.add(ChatColor.GOLD + "Bona fide!");
 			newLore.add(fullName);
 			newLore.add(block.getType().name() + ":" + block.getData());
 
-			if (item.getItemMeta().hasLore())
+			if (item.getItemMeta().getLore().size() == 3)
 			{
 				List<String> lore = item.getItemMeta().getLore();
 
@@ -144,10 +146,10 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
 			}
 
 		}
-		else if (item.getItemMeta().hasLore())
+		else if (item.getItemMeta().getLore().size() == 3)
 		{
 			List<String> lore = item.getItemMeta().getLore();
-			String fullData = lore.get(1);
+			String fullData = lore.get(2);
 			String[] splitData = fullData.split(":");
 
 			List<String> rawData = new ArrayList<String>();
