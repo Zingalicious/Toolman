@@ -10,8 +10,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import us.zingalicio.toolman.AbstractTool;
 import us.zingalicio.toolman.Toolman;
-import us.zingalicio.zinglib.util.MessageUtil;
-import us.zingalicio.zinglib.util.NameUtil;
+import us.zingalicio.cordstone.util.MessageUtil;
+import us.zingalicio.cordstone.util.NameUtil;
 
 public class Replicator extends AbstractTool
 {

@@ -14,7 +14,7 @@ import us.zingalicio.toolman.tools.Paintbrush;
 import us.zingalicio.toolman.tools.Pliers;
 import us.zingalicio.toolman.tools.Replicator;
 import us.zingalicio.toolman.tools.Wrench;
-import us.zingalicio.zinglib.plugin.ZingPlugin;
+import us.zingalicio.cordstone.ZingPlugin;
 
 public final class Toolman extends ZingPlugin
 {

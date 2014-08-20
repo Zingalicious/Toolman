@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>us.zingalicio</groupId>
   <artifactId>Toolman</artifactId>
-  <version>0.5.5</version>
+  <version>1.0.0</version>
   <name>Toolman</name>
   <description>Zingalicious' tool plugin.</description>
   <url>http://github.com/Zingalicious/Toolman</url>
@@ -33,8 +33,8 @@
         </dependency>
         <dependency>
         	<groupId>us.zingalicio</groupId>
-        	<artifactId>ZingLib</artifactId>
-        	<version>0.1.0</version>
+        	<artifactId>Cordstone</artifactId>
+        	<version>0.1.1</version>
         	<scope>provided</scope>
         </dependency>
     </dependencies>

@@ -14,9 +14,9 @@ import org.bukkit.event.block.Action;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import us.zingalicio.zinglib.util.MessageUtil;
-import us.zingalicio.zinglib.util.NameUtil;
-import us.zingalicio.zinglib.util.SoundUtil;
+import us.zingalicio.cordstone.util.MessageUtil;
+import us.zingalicio.cordstone.util.NameUtil;
+import us.zingalicio.cordstone.util.SoundUtil;
 import us.zingalicio.toolman.AbstractTool;
 import us.zingalicio.toolman.Toolman;
 
@@ -54,7 +54,7 @@ public void onRangedUse(Player player, ItemStack item, Action action)
 
 				if (lore.equals(newLore))
 				{
-					MessageUtil.sendMessage(plugin, player, "Paint was already " + ChatColor.WHITE + fullName + ChatColor.GOLD + ".");
+					MessageUtil.sendMessage(plugin, player, "Paint was already " + ChatColor.WHITE + fullName + ChatColor.YELLOW + ".");
 				}
 				else
 				{
@@ -63,7 +63,7 @@ public void onRangedUse(Player player, ItemStack item, Action action)
 
 					player.getWorld().playSound(player.getLocation(), Sound.LAVA_POP, 0.1F, 0.031F);
 					item.setItemMeta(itemMeta);
-					MessageUtil.sendMessage(plugin, player, "Paint is now " + ChatColor.WHITE + fullName + ChatColor.GOLD + ".");
+					MessageUtil.sendMessage(plugin, player, "Paint is now " + ChatColor.WHITE + fullName + ChatColor.YELLOW + ".");
 				}
 			}
 			else
@@ -72,7 +72,7 @@ public void onRangedUse(Player player, ItemStack item, Action action)
 				itemMeta.setLore(newLore);
 
 				item.setItemMeta(itemMeta);
-				MessageUtil.sendMessage(plugin, player, "Paint is now " + ChatColor.WHITE + fullName + ChatColor.GOLD + ".");
+				MessageUtil.sendMessage(plugin, player, "Paint is now " + ChatColor.WHITE + fullName + ChatColor.YELLOW + ".");
 			}
 
 		}
@@ -124,7 +124,7 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
 
 				if (lore.equals(newLore))
 				{
-					MessageUtil.sendMessage(plugin, player, "Paint was already " + ChatColor.WHITE + fullName + ChatColor.GOLD + ".");
+					MessageUtil.sendMessage(plugin, player, "Paint was already " + ChatColor.WHITE + fullName + ChatColor.YELLOW + ".");
 				}
 				else
 				{
@@ -133,7 +133,7 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
 
 					player.getWorld().playSound(player.getLocation(), Sound.LAVA_POP, 0.1F, 0.031F);
 					item.setItemMeta(itemMeta);
-					MessageUtil.sendMessage(plugin, player, "Paint is now " + ChatColor.WHITE + fullName + ChatColor.GOLD + ".");
+					MessageUtil.sendMessage(plugin, player, "Paint is now " + ChatColor.WHITE + fullName + ChatColor.YELLOW + ".");
 				}
 			}
 			else
@@ -142,7 +142,7 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
 				itemMeta.setLore(newLore);
 
 				item.setItemMeta(itemMeta);
-				MessageUtil.sendMessage(plugin, player, "Paint is now " + ChatColor.WHITE + fullName + ChatColor.GOLD + ".");
+				MessageUtil.sendMessage(plugin, player, "Paint is now " + ChatColor.WHITE + fullName + ChatColor.YELLOW + ".");
 			}
 
 		}

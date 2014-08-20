@@ -12,7 +12,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.inventory.ItemStack;
 import us.zingalicio.toolman.AbstractTool;
 import us.zingalicio.toolman.Toolman;
-import us.zingalicio.zinglib.util.MessageUtil;
+import us.zingalicio.cordstone.util.MessageUtil;
 
 public class Wrench extends AbstractTool
 {

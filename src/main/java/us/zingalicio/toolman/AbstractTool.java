@@ -10,8 +10,8 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 
-import us.zingalicio.zinglib.util.SoundUtil;
-import us.zingalicio.zinglib.plugin.ZingPlugin;
+import us.zingalicio.cordstone.util.SoundUtil;
+import us.zingalicio.cordstone.ZingPlugin;
 
 public abstract class AbstractTool
   implements Tool
