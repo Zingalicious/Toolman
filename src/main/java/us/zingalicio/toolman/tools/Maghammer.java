@@ -121,7 +121,7 @@ private void moveBlock(Boolean overwrite, Boolean physics, ItemStack item, Playe
       BlockBreakEvent breakEvent2 = new BlockBreakEvent(destination, player);
       Bukkit.getPluginManager().callEvent(breakEvent2);
 
-      destination.getWorld().playSound(destination.getLocation(), SoundUtil.getSound(destination.getType(), plugin), 1.0F, 1.0F);
+      destination.getWorld().playSound(destination.getLocation(), SoundUtil.getSound(destination.getType()), 1.0F, 1.0F);
 
       destination.setTypeId(id, physics.booleanValue());
       destination.setData(data, physics.booleanValue());

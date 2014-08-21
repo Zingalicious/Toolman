@@ -53,7 +53,7 @@ public void updateBlockChange(Block changedBlock)
   {
     BlockBreakEvent breakEvent = new BlockBreakEvent(block, player);
     Bukkit.getPluginManager().callEvent(breakEvent);
-    block.getWorld().playSound(block.getLocation(), SoundUtil.getSound(block.getType(), plugin), 1.0F, 1.0F);
+    block.getWorld().playSound(block.getLocation(), SoundUtil.getSound(block.getType()), 1.0F, 1.0F);
     block.setTypeId(0, physics.booleanValue());
     if (!physics.booleanValue())
     {
@@ -66,12 +66,12 @@ public void updateBlockChange(Block changedBlock)
   {
     BlockBreakEvent breakEvent = new BlockBreakEvent(block, player);
     Bukkit.getPluginManager().callEvent(breakEvent);
-    block.getWorld().playSound(block.getLocation(), SoundUtil.getSound(block.getType(), plugin), 0.2F, 1.0F);
+    block.getWorld().playSound(block.getLocation(), SoundUtil.getSound(block.getType()), 0.2F, 1.0F);
 
     block.setTypeId(mat.getId(), physics.booleanValue());
     block.setData(data, physics.booleanValue());
 
-    block.getWorld().playSound(block.getLocation(), SoundUtil.getSound(block.getType(), plugin), 1.0F, 1.0F);
+    block.getWorld().playSound(block.getLocation(), SoundUtil.getSound(block.getType()), 1.0F, 1.0F);
 
     BlockPlaceEvent placeEvent = new BlockPlaceEvent(block, block.getState(), block, item, player, true);
     Bukkit.getPluginManager().callEvent(placeEvent);
@@ -88,7 +88,7 @@ public void updateBlockChange(Block changedBlock)
     block.setTypeId(mat.getId(), physics.booleanValue());
     block.setData(data, physics.booleanValue());
 
-    block.getWorld().playSound(block.getLocation(), SoundUtil.getSound(block.getType(), plugin), 1.0F, 1.0F);
+    block.getWorld().playSound(block.getLocation(), SoundUtil.getSound(block.getType()), 1.0F, 1.0F);
 
     BlockPlaceEvent placeEvent = new BlockPlaceEvent(block, block.getState(), block, item, player, true);
     Bukkit.getPluginManager().callEvent(placeEvent);

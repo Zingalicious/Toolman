@@ -1,5 +1,5 @@
 name: Toolman
 main: us.zingalicio.toolman.Toolman
 version: ${project.version}
-depend: [ZingLib]
+depend: [Cordstone]
 author: zingten11

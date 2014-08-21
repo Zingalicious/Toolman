@@ -42,7 +42,7 @@ public void onRangedUse(Player player, ItemStack item, Action action)
 		{
 			List<String> newLore = new ArrayList<String>();
 
-			String fullName = NameUtil.getFullName(plugin, targetBlock.getType(), targetBlock.getState().getData());
+			String fullName = NameUtil.getFullName(targetBlock.getType(), targetBlock.getState().getData());
 
 			newLore.add(ChatColor.GOLD + "Bona fide!");
 			newLore.add(fullName);
@@ -112,7 +112,7 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
 		{
 			List<String> newLore = new ArrayList<String>();
 
-			String fullName = NameUtil.getFullName(plugin, block.getType(), block.getState().getData());
+			String fullName = NameUtil.getFullName(block.getType(), block.getState().getData());
 
 			newLore.add(ChatColor.GOLD + "Bona fide!");
 			newLore.add(fullName);

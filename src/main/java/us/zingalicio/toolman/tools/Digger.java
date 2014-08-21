@@ -158,7 +158,7 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
 	{
 	  BlockBreakEvent breakEvent = new BlockBreakEvent(block, player);
 	  Bukkit.getPluginManager().callEvent(breakEvent);
-	  block.getWorld().playSound(block.getLocation(), SoundUtil.getSound(block.getType(), plugin), 0.1F, 1.0F);
+	  block.getWorld().playSound(block.getLocation(), SoundUtil.getSound(block.getType()), 0.1F, 1.0F);
 	  block.setTypeId(0, physics.booleanValue());
 	  if (!physics.booleanValue())
 	  {
