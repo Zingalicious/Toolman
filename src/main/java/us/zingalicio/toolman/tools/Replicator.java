@@ -70,7 +70,7 @@ public void onRangedUse(Player player, ItemStack item, Action action)
 			{
 				amt = maxStackSize;
 			}
-			MessageUtil.sendMessage(plugin, player, "Given " + amt + " " + NameUtil.getFullName(newStack.getType(), newStack.getData()) + ".");
+			MessageUtil.sendMessage(plugin, player, "Given " + amt + " " + NameUtil.getItemName(newStack.getType(), newStack.getData()) + ".");
 			player.getWorld().playSound(player.getLocation(), Sound.LAVA_POP, 0.1F, 0.031F);
 			player.updateInventory();
 		}
@@ -119,7 +119,7 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
 			{
 				amt = maxStackSize;
 			}
-			MessageUtil.sendMessage(plugin, player, "Given " + amt + " " + NameUtil.getFullName(newStack.getType(), newStack.getData()) + ".");
+			MessageUtil.sendMessage(plugin, player, "Given " + amt + " " + NameUtil.getItemName(newStack.getType(), newStack.getData()) + ".");
 	
 			player.getWorld().playSound(player.getLocation(), Sound.LAVA_POP, 0.1F, 0.031F);
 			player.updateInventory();
