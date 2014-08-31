@@ -11,7 +11,6 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
-import us.zingalicio.cordstone.ZingPlugin;
 import us.zingalicio.cordstone.util.MessageUtil;
 import us.zingalicio.cordstone.util.SoundUtil;
 import us.zingalicio.toolman.AbstractTool;
@@ -71,7 +70,7 @@ public void onRangedUse(Player player, ItemStack item, Action action)
           {
             if (this.mask.contains(b.getType()))
             {
-              breakBlock(Boolean.valueOf(true), b, player, plugin);
+              breakBlock(Boolean.valueOf(true), b, player);
             }
           }
         }
@@ -82,7 +81,7 @@ public void onRangedUse(Player player, ItemStack item, Action action)
           {
             if (this.mask.contains(b.getType()))
             {
-              breakBlock(Boolean.valueOf(true), b, player, plugin);
+              breakBlock(Boolean.valueOf(true), b, player);
             }
           }
         }
@@ -106,7 +105,7 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
         {
           if (this.mask.contains(b.getType()))
           {
-            breakBlock(Boolean.valueOf(true), b, player, plugin);
+            breakBlock(Boolean.valueOf(true), b, player);
           }
         }
       }
@@ -117,7 +116,7 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
         {
           if (this.mask.contains(b.getType()))
           {
-            breakBlock(Boolean.valueOf(true), b, player, plugin);
+            breakBlock(Boolean.valueOf(true), b, player);
           }
         }
       }
@@ -134,7 +133,7 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
         {
           if (this.mask.contains(b.getType()))
           {
-            breakBlock(Boolean.valueOf(true), b, player, plugin);
+            breakBlock(Boolean.valueOf(true), b, player);
           }
         }
       }
@@ -145,7 +144,7 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
         {
           if (this.mask.contains(b.getType()))
           {
-            breakBlock(Boolean.valueOf(true), b, player, plugin);
+            breakBlock(Boolean.valueOf(true), b, player);
           }
         }
       }
@@ -154,7 +153,7 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public void breakBlock(Boolean physics, Block block, Player player, ZingPlugin plugin)
+	public void breakBlock(Boolean physics, Block block, Player player)
 	{
 	  BlockBreakEvent breakEvent = new BlockBreakEvent(block, player);
 	  Bukkit.getPluginManager().callEvent(breakEvent);

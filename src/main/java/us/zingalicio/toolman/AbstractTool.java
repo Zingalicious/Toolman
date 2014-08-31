@@ -11,7 +11,6 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 
 import us.zingalicio.cordstone.util.SoundUtil;
-import us.zingalicio.cordstone.ZingPlugin;
 
 public abstract class AbstractTool
   implements Tool
@@ -49,7 +48,7 @@ public void updateBlockChange(Block changedBlock)
   }
 
   @SuppressWarnings("deprecation")
-  public void breakBlock(Boolean physics, Block block, Player player, ZingPlugin plugin)
+  public void breakBlock(Boolean physics, Block block, Player player)
   {
     BlockBreakEvent breakEvent = new BlockBreakEvent(block, player);
     Bukkit.getPluginManager().callEvent(breakEvent);
@@ -62,7 +61,7 @@ public void updateBlockChange(Block changedBlock)
   }
 
   @SuppressWarnings("deprecation")
-  public void changeBlock(Boolean physics, Block block, Material mat, byte data, Player player, ItemStack item, ZingPlugin plugin)
+  public void changeBlock(Boolean physics, Block block, Material mat, byte data, Player player, ItemStack item)
   {
     BlockBreakEvent breakEvent = new BlockBreakEvent(block, player);
     Bukkit.getPluginManager().callEvent(breakEvent);
@@ -83,7 +82,7 @@ public void updateBlockChange(Block changedBlock)
   }
 
   @SuppressWarnings("deprecation")
-  public void placeBlock(Boolean physics, Block block, Material mat, byte data, Player player, ItemStack item, ZingPlugin plugin)
+  public void placeBlock(Boolean physics, Block block, Material mat, byte data, Player player, ItemStack item)
   {
     block.setTypeId(mat.getId(), physics.booleanValue());
     block.setData(data, physics.booleanValue());

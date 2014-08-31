@@ -105,7 +105,7 @@ private void moveBlock(Boolean overwrite, Boolean physics, ItemStack item, Playe
     BlockState state = clicked.getState();
     if (destination.getType() == Material.AIR)
     {
-      breakBlock(physics, clicked, player, plugin);
+      breakBlock(physics, clicked, player);
 
       destination.setTypeId(id, physics.booleanValue());
       destination.setData(data, physics.booleanValue());
@@ -116,7 +116,7 @@ private void moveBlock(Boolean overwrite, Boolean physics, ItemStack item, Playe
     }
     if (overwrite.booleanValue())
     {
-      breakBlock(physics, clicked, player, plugin);
+      breakBlock(physics, clicked, player);
 
       BlockBreakEvent breakEvent2 = new BlockBreakEvent(destination, player);
       Bukkit.getPluginManager().callEvent(breakEvent2);

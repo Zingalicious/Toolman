@@ -99,7 +99,7 @@ public void onRangedUse(Player player, ItemStack item, Action action)
 
 				if ((mat != oldMat) || (data != oldData))
 				{
-					changeBlock(Boolean.valueOf(false), targetBlock, mat, data, player, item, plugin);
+					changeBlock(Boolean.valueOf(false), targetBlock, mat, data, player, item);
 				}
 			}
 		}
@@ -169,11 +169,11 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
 			{
 				if (player.isSneaking())
 				{
-					changeBlock(false, block, mat, data, player, item, plugin);
+					changeBlock(false, block, mat, data, player, item);
 				}
 				else
 				{
-					changeBlock(true, block, mat, data, player, item, plugin);
+					changeBlock(true, block, mat, data, player, item);
 				}
 			}
 		}

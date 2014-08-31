@@ -59,7 +59,7 @@ public void onRangedUse(Player player, ItemStack item, Action action)
 
 									if (b == targetData)
 									{
-										changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getType(), valueList.get(currentValue - 1), player, item, plugin);
+										changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getType(), valueList.get(currentValue - 1), player, item);
 										return;
 									}
 									currentValue++;
@@ -67,13 +67,13 @@ public void onRangedUse(Player player, ItemStack item, Action action)
 							}
 							else
 							{
-								changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getType(), valueList.get(valueLength - 1), player, item, plugin);
+								changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getType(), valueList.get(valueLength - 1), player, item);
 							}
 
 						}
 						else
 						{
-							changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getType(), valueList.get(0), player, item, plugin);
+							changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getType(), valueList.get(0), player, item);
 						}
 
 					}
@@ -88,7 +88,7 @@ public void onRangedUse(Player player, ItemStack item, Action action)
 
 								if (b == targetData)
 								{
-									changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getType(), valueList.get(currentValue + 1), player, item, plugin);
+									changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getType(), valueList.get(currentValue + 1), player, item);
 									return;
 								}
 								currentValue++;
@@ -96,13 +96,13 @@ public void onRangedUse(Player player, ItemStack item, Action action)
 						}
 						else
 						{
-							changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getType(), valueList.get(0), player, item, plugin);
+							changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getType(), valueList.get(0), player, item);
 						}
 
 					}
 					else
 					{
-						changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getType(), valueList.get(0), player, item, plugin);
+						changeBlock(Boolean.valueOf(false), targetBlock, targetBlock.getType(), valueList.get(0), player, item);
 						return;
 					}
 				}
@@ -127,21 +127,21 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
 			{
 				if (block.getData() != 0)
 				{
-					changeBlock(Boolean.valueOf(false), block, block.getType(), (byte)(targetData - 1), player, item, plugin);
+					changeBlock(Boolean.valueOf(false), block, block.getType(), (byte)(targetData - 1), player, item);
 					return;
 				}
 
-				changeBlock(Boolean.valueOf(false), block, block.getType(), (byte)15, player, item, plugin);
+				changeBlock(Boolean.valueOf(false), block, block.getType(), (byte)15, player, item);
 				return;
 			}
 
 			if (block.getData() != 15)
 			{
-				changeBlock(Boolean.valueOf(false), block, block.getType(), (byte)(targetData + 1), player, item, plugin);
+				changeBlock(Boolean.valueOf(false), block, block.getType(), (byte)(targetData + 1), player, item);
 				return;
 			}
 
-			changeBlock(Boolean.valueOf(false), block, block.getType(), (byte)0, player, item, plugin);
+			changeBlock(Boolean.valueOf(false), block, block.getType(), (byte)0, player, item);
 			return;
 		}
 		
@@ -169,7 +169,7 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
 
 							if (b == targetData)
 							{
-								changeBlock(Boolean.valueOf(false), block, block.getType(), valueList.get(currentValue - 1), player, item, plugin);
+								changeBlock(Boolean.valueOf(false), block, block.getType(), valueList.get(currentValue - 1), player, item);
 								return;
 							}
 							currentValue++;
@@ -177,13 +177,13 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
 					}
 					else
 					{
-						changeBlock(Boolean.valueOf(false), block, block.getType(), valueList.get(valueLength - 1), player, item, plugin);
+						changeBlock(Boolean.valueOf(false), block, block.getType(), valueList.get(valueLength - 1), player, item);
 					}
 
 				}
 				else
 				{
-					changeBlock(Boolean.valueOf(false), block, block.getType(), valueList.get(0), player, item, plugin);
+					changeBlock(Boolean.valueOf(false), block, block.getType(), valueList.get(0), player, item);
 				}
 
 			}
@@ -198,7 +198,7 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
 
 						if (b == targetData)
 						{
-							changeBlock(Boolean.valueOf(false), block, block.getType(), valueList.get(currentValue + 1), player, item, plugin);
+							changeBlock(Boolean.valueOf(false), block, block.getType(), valueList.get(currentValue + 1), player, item);
 							return;
 						}
 						currentValue++;
@@ -206,13 +206,13 @@ public void onCloseUse(Block block, BlockFace blockFace, Player player, ItemStac
 				}
 				else
 				{
-					changeBlock(Boolean.valueOf(false), block, block.getType(), valueList.get(0), player, item, plugin);
+					changeBlock(Boolean.valueOf(false), block, block.getType(), valueList.get(0), player, item);
 				}
 
 			}
 			else
 			{
-				changeBlock(Boolean.valueOf(false), block, block.getType(), valueList.get(0), player, item, plugin);
+				changeBlock(Boolean.valueOf(false), block, block.getType(), valueList.get(0), player, item);
 				return;
 			}
 		}

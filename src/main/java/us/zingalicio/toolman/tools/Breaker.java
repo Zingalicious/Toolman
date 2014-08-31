@@ -34,11 +34,11 @@ public void onRangedUse(Player player, ItemStack item, Action action)
       {
         if ((action == Action.LEFT_CLICK_AIR) || (action == Action.LEFT_CLICK_BLOCK))
         {
-          breakBlock(Boolean.valueOf(true), targetBlock, player, plugin);
+          breakBlock(Boolean.valueOf(true), targetBlock, player);
           return;
         }
 
-        breakBlock(Boolean.valueOf(false), targetBlock, player, plugin);
+        breakBlock(Boolean.valueOf(false), targetBlock, player);
         return;
       }
 
@@ -51,10 +51,10 @@ public void onRangedUse(Player player, ItemStack item, Action action)
   {
     if ((action == Action.LEFT_CLICK_AIR) || (action == Action.LEFT_CLICK_BLOCK))
     {
-      breakBlock(Boolean.valueOf(true), clickedBlock, player, plugin);
+      breakBlock(Boolean.valueOf(true), clickedBlock, player);
       return;
     }
 
-    breakBlock(Boolean.valueOf(false), clickedBlock, player, plugin);
+    breakBlock(Boolean.valueOf(false), clickedBlock, player);
   }
 }
